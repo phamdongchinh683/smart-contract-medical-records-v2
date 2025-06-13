@@ -1,0 +1,14 @@
+/**
+ * Minified by jsDelivr using Terser v5.19.2.
+ * Original file: /npm/use@3.1.1/index.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+/*!
+ * use <https://github.com/jonschlinkert/use>
+ *
+ * Copyright (c) 2015-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+"use strict";function isObject(e){return e&&"object"==typeof e&&!Array.isArray(e)}function define(e,n,r){Object.defineProperty(e,n,{configurable:!0,writable:!0,value:r})}module.exports=function e(n,r){if(!isObject(n)&&"function"!=typeof n)throw new TypeError("expected an object or function");var t=isObject(r)?r:{},i="string"==typeof t.prop?t.prop:"fns";function o(e,r,o){var f=1;if("string"==typeof e||Array.isArray(e)?(r=function(e,n){return function r(){return this.type===e?n.apply(this,arguments):r}}(e,r),f++):(o=r,r=e),"function"!=typeof r)throw new TypeError("expected a function");var u=this||n,c=u[i],p=[].slice.call(arguments,f);p.unshift(u),"function"==typeof t.hook&&t.hook.apply(u,p);var s=r.apply(u,p);return"function"==typeof s&&-1===c.indexOf(s)&&c.push(s),u}return Array.isArray(n[i])||define(n,i,[]),define(n,"use",o),define(n,"run",(function(r){if(isObject(r)){r.use&&r.run||(define(r,i,r[i]||[]),define(r,"use",o)),r[i]&&-1!==r[i].indexOf(e)||r.use(e);for(var t=(this||n)[i],f=t.length,u=-1;++u<f;)r.use(t[u]);return r}})),n};
+//# sourceMappingURL=/sm/c48a48beae1d773e0a66723b6142a766228e5925ba095bc2195d4eb5a4aa4096.map
