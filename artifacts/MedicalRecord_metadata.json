@@ -169,7 +169,13 @@
 					{
 						"indexed": true,
 						"internalType": "uint256",
-						"name": "_tokenIdCounter",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
 						"type": "uint256"
 					}
 				],
@@ -338,7 +344,12 @@
 				"outputs": [
 					{
 						"internalType": "uint256[]",
-						"name": "",
+						"name": "tokenIds",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "timestamps",
 						"type": "uint256[]"
 					}
 				],
@@ -458,7 +469,12 @@
 				"outputs": [
 					{
 						"internalType": "uint256[]",
-						"name": "",
+						"name": "tokenIds",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "timestamps",
 						"type": "uint256[]"
 					}
 				],
@@ -834,22 +850,6 @@
 				"dweb:/ipfs/Qmb717ovcFxm7qgNKEShiV6M9SPR3v1qnNpAGH84D6w29p"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol": {
-			"keccak256": "0x5191f783af281c75b7de0f1e3e36cdc6ac5cb2358d929584c4953fd02fa2b5eb",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://d3ca2689d95ba45e297e55c8f71112e3ccec701d0087cb5e1c6ecb1b9ce86f00",
-				"dweb:/ipfs/QmNQ5xKxJpF9k7AahnmJYvg5XeGSYtRig2Lp2WHmWXyBze"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
-			"keccak256": "0x3d6954a93ac198a2ffa384fa58ccf18e7e235263e051a394328002eff4e073de",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://1f58c799bd939d3951c94893e83ef86acd56989d1d7db7f9d180c515e29e28ff",
-				"dweb:/ipfs/QmTgAxHAAys4kq9ZfU9YB24MWYoHLGAKSxnYUigPFrNW7g"
-			]
-		},
 		"@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
 			"keccak256": "0x37d1aaaa5a2908a09e9dcf56a26ddf762ecf295afb5964695937344fc6802ce1",
 			"license": "MIT",
@@ -931,27 +931,27 @@
 			]
 		},
 		"contracts/MedicalRecord.sol": {
-			"keccak256": "0x64f87c0f9759a53910945eb1a6adf575180b04ba7b9b32c8bdfa73319660ae60",
+			"keccak256": "0xeb86155a3a8e0ef67705a1d3238dacd1843c0902437a590ae11507e5ae27c679",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1ce772d39299832acedc6e9b810eacca8ad307fcb6d42a013681cd70b67d2b26",
-				"dweb:/ipfs/Qmdnh9LyQ9HHxVdZYnx6r3NTpWozRVC6TUb6wUw6K2NB4b"
+				"bzz-raw://458a6bd24032a0d1bca89a0bff5852f7423f6ff8de1491d0db2eeaeb81cf2026",
+				"dweb:/ipfs/QmfRfcCXrF47qCbQod3VZZ2t59xZDNVmDN6HPsTQXoAkbP"
 			]
 		},
 		"contracts/interface/DoctorInterface.sol": {
-			"keccak256": "0x77eebcceb98f0f2f8f206879b9c47623b78d2f9cb8941115450c138c4f3a781e",
+			"keccak256": "0x8c9261c8d37c52ba140285ef35c67748aea995efe3d07bcc376d1a653271badf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://013bbacb610da556198c8151755a6125e096ff4d84bbfbabebe4f6509fbc39aa",
-				"dweb:/ipfs/QmWNuN7RHqzDNeLETST571Jms2rDRftU1cmKfWdU88XMnU"
+				"bzz-raw://70a50f3a1b71a6224ef147db0a8e4052543b4a7b739d2184c1802be2e1ed96b0",
+				"dweb:/ipfs/QmRn7Jgq875ndXEzqoRn6Vk752PrtJHgRC4QUs7X1nJebD"
 			]
 		},
 		"contracts/interface/PatientInterface.sol": {
-			"keccak256": "0x1896a7bcfede2175eb5fc0a5a0ae3b8f722162f75c78ba8b50db971aa8630d30",
+			"keccak256": "0xea737b515ce710567c4821f8499461319201ad5a3b0407d6b85d256fc064e78c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://add8d95e1eb81887444b6e14ee982bed99ce30106fd8ba58d728d50d2706bf49",
-				"dweb:/ipfs/QmRyCw33pGVEyEHzY2L461otXKQprBY5pTb4kTatdZpK8y"
+				"bzz-raw://b8de6c1469feb8db3b2acd6264d29a289b874a88e73e7779b6fb52801744ea0c",
+				"dweb:/ipfs/Qmd2NcgKh6Aw6auLdkVHWjB7Fwg9gTLoZop5FWPXJLU5LP"
 			]
 		},
 		"contracts/permission/PermissionControl.sol": {
@@ -960,6 +960,14 @@
 			"urls": [
 				"bzz-raw://1329fb6e0cdca2ea6d73c1c2d57a41bc186e925806bbb714e681e4a04e92ba69",
 				"dweb:/ipfs/QmXF4DLwXLwjor5PHkeSVZ77FgyBp9Vzv59PFCpL1sQvLL"
+			]
+		},
+		"contracts/struct/MedicalStruct.sol": {
+			"keccak256": "0xf4038dbfd6670f2c33c1ad540fb6603406095fbeeba5c2876f12f908cf1dc9e6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7532c53644a64d0284515156594abd6fbcbd254df017913ce7f742442c6fefb7",
+				"dweb:/ipfs/QmaHQP32suSVGUaN7mFZ7sUUMnPGHM2SkmJgKGkCwgENdn"
 			]
 		},
 		"contracts/user/UserRegistry.sol": {

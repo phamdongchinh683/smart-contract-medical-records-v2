@@ -23,11 +23,11 @@ contract UserRegistry {
         emit Registered(msg.sender, Role.Doctor);
     }
 
-    function isPatient(address user) internal view returns (bool) {
+    function isPatient(address user) external  view returns (bool) {
         return roles[user] == Role.Patient;
     }
 
-    function isDoctor(address user) internal view returns (bool) {
+    function isDoctor(address user) external  view returns (bool) {
         return roles[user] == Role.Doctor;
     }
 }

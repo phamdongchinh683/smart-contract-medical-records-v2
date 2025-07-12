@@ -6,5 +6,9 @@ interface PatientInterface {
 
     function revokePermission(address _doctor) external;
 
-    function patientMedicalRecords() external view returns (uint256[] memory);
+    function patientMedicalRecords()
+        external
+        view
+        returns (uint256[] memory tokenIds, uint256[] memory timestamps);
+    
 }

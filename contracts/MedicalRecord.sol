@@ -5,7 +5,7 @@ import "contracts/user/UserRegistry.sol";
 import "contracts/interface/DoctorInterface.sol";
 import "contracts/interface/PatientInterface.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "contracts/struct/MedicalStruct.sol";
 
 contract MedicalRecord is
     UserRegistry,
@@ -21,9 +21,9 @@ contract MedicalRecord is
     }
 
     mapping(address => address[]) private authorizedPatientList;
-    mapping(address => uint256[]) private patientTokens;
+    mapping(address => MedicalStruct.MedicalRecord[]) private patientTokens;
 
-    event MedicalRecordCreated(uint256 indexed _tokenIdCounter);
+    event MedicalRecordCreated(uint256 indexed tokenId, uint256 timestamp);
 
     // Doctor method
     function addRecord(address patient) external override onlyDoctor {
@@ -31,9 +31,15 @@ contract MedicalRecord is
             _tokenIdCounter++;
         }
         _mint(patient, _tokenIdCounter);
-        patientTokens[patient].push(_tokenIdCounter);
+        MedicalStruct.MedicalRecord memory newRecord = MedicalStruct
+            .MedicalRecord({
+                tokenNft: _tokenIdCounter,
+                timestamp: block.timestamp
+            });
 
-        emit MedicalRecordCreated(_tokenIdCounter);
+        patientTokens[patient].push(newRecord);
+
+        emit MedicalRecordCreated(_tokenIdCounter, block.timestamp);
     }
 
     function getAuthorizedPatients()
@@ -51,13 +57,23 @@ contract MedicalRecord is
         view
         override
         onlyDoctor
-        returns (uint256[] memory)
+        returns (uint256[] memory tokenIds, uint256[] memory timestamps)
     {
         require(
             checkPermission(_patient, msg.sender),
             "You are not authorized to access this patient's records"
         );
-        return patientTokens[_patient];
+
+        uint256 len = patientTokens[_patient].length;
+        tokenIds = new uint256[](len);
+        timestamps = new uint256[](len);
+
+        for (uint256 i = 0; i < len; i++) {
+            tokenIds[i] = patientTokens[_patient][i].tokenNft;
+            timestamps[i] = patientTokens[_patient][i].timestamp;
+        }
+
+        return (tokenIds, timestamps);
     }
 
     // Patient methods
@@ -79,7 +95,6 @@ contract MedicalRecord is
             authorizedPatientList[_doctor].push(msg.sender);
         }
     }
-    
 
     function revokePermission(address _doctor) external override onlyPatient {
         require(
@@ -103,8 +118,17 @@ contract MedicalRecord is
         view
         override
         onlyPatient
-        returns (uint256[] memory)
+        returns (uint256[] memory tokenIds, uint256[] memory timestamps)
     {
-        return patientTokens[msg.sender];
+         uint256 len = patientTokens[msg.sender].length;
+        tokenIds = new uint256[](len);
+        timestamps = new uint256[](len);
+
+        for (uint256 i = 0; i < len; i++) {
+            tokenIds[i] = patientTokens[msg.sender][i].tokenNft;
+            timestamps[i] = patientTokens[msg.sender][i].timestamp;
+        }
+
+        return (tokenIds, timestamps);
     }
 }

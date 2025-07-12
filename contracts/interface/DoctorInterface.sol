@@ -12,5 +12,5 @@ interface DoctorInterface {
     function getMedicalRecords(address patient)
         external
         view
-        returns (uint256[] memory);
+        returns (uint256[] memory tokenIds, uint256[] memory timestamps);
 }
